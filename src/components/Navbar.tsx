@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
 export default function WynbizNavbar() {
@@ -25,19 +26,20 @@ export default function WynbizNavbar() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Wynbiz
-          </span>
+          <Link href="/" className="flex items-center">
+            {
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className="h-24 w-auto"
+                src="/logo.png"
+                alt="Wynbiz Logo"
+              ></img>
+            }
+          </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <a
-            href="#home"
-            className="text-white hover:text-gray-300 transition-colors"
-          >
-            Home
-          </a>
           <a
             href="#services"
             className="text-white hover:text-gray-300 transition-colors"

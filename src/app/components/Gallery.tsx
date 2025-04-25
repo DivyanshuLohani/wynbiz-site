@@ -1,19 +1,56 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { config } from "../lib/config";
+import { config } from "../../lib/config";
 
 const MarqueeGallery = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [shuffledRows, setShuffledRows] = useState<{
+    top: string[];
+    middle: string[];
+    bottom: string[];
+  }>({
+    top: [],
+    middle: [],
+    bottom: [],
+  });
   const containerRef = useRef<HTMLDivElement>(null);
   const threeContainerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
 
+  // Shuffle function to randomize array
+  const shuffleArray = (array: string[]) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Initialize shuffled rows
+  useEffect(() => {
+    setShuffledRows({
+      top: [...shuffleArray(config.gallery), ...shuffleArray(config.gallery)],
+      middle: [
+        ...shuffleArray(config.gallery),
+        ...shuffleArray(config.gallery),
+      ],
+      bottom: [
+        ...shuffleArray(config.gallery),
+        ...shuffleArray(config.gallery),
+      ],
+    });
+  }, []);
+
   // Initialize Three.js
   useEffect(() => {
+    if (!threeContainerRef.current) return;
+    if (!rendererRef.current) return;
+    if (!sceneRef.current) return;
     // Create scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -119,10 +156,6 @@ const MarqueeGallery = () => {
     };
   }, []);
 
-  // We need to duplicate items to ensure smooth infinite scroll
-  // For proper seamless loop, we need exactly enough items to fill the container twice
-  const duplicatedItems = [...config.gallery, ...config.gallery];
-
   return (
     <section className="relative w-full min-h-screen py-16 overflow-hidden">
       {/* Three.js background container */}
@@ -172,11 +205,11 @@ const MarqueeGallery = () => {
               animationPlayState: isLoaded ? "running" : "paused",
             }}
           >
-            {duplicatedItems.map((item, index) => (
+            {shuffledRows.top.map((item, index) => (
               <div key={`top-${index}`} className="flex-shrink-0 w-48 mx-2">
                 <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-300">
                   <img
-                    src={`${item}?random=${index}`}
+                    src={`${item}`}
                     alt={`Gallery item ${index}`}
                     className="w-full h-32 object-cover"
                   />
@@ -201,11 +234,11 @@ const MarqueeGallery = () => {
               animationPlayState: isLoaded ? "running" : "paused",
             }}
           >
-            {duplicatedItems.map((item, index) => (
+            {shuffledRows.middle.map((item, index) => (
               <div key={`middle-${index}`} className="flex-shrink-0 w-80 mx-3">
                 <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-300">
                   <img
-                    src={`${item}?random=${index + 100}`}
+                    src={`${item}`}
                     alt={`Gallery item ${index}`}
                     className="w-full h-48 object-cover"
                   />
@@ -230,11 +263,11 @@ const MarqueeGallery = () => {
               animationPlayState: isLoaded ? "running" : "paused",
             }}
           >
-            {duplicatedItems.map((item, index) => (
+            {shuffledRows.bottom.map((item, index) => (
               <div key={`bottom-${index}`} className="flex-shrink-0 w-48 mx-2">
                 <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-300">
                   <img
-                    src={`${item}?random=${index + 200}`}
+                    src={`${item}`}
                     alt={`Gallery item ${index}`}
                     className="w-full h-32 object-cover"
                   />

@@ -9,7 +9,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
-import { config } from "../lib/config";
+import { config } from "../../lib/config";
 
 const Footer = () => {
   return (
@@ -17,9 +17,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* About */}
         <div>
-          <h3 className="text-white text-xl font-bold mb-4">
-            {config.site.name}
-          </h3>
+          {
+            /* here should be an image */
+
+            <img src="/logo.png" alt="Logo" className="h-24 mb-4" />
+          }
+
           <p className="text-sm mb-4">{config.site.description}</p>
           <div className="flex space-x-4 mt-6">
             <a
