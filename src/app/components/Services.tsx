@@ -38,7 +38,7 @@ export default function ServicesTimeline() {
   ];
 
   return (
-    <div className="w-full bg-black text-white font-sans">
+    <section className="w-full bg-black text-white font-sans" id="services">
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
         <h2 className="text-3xl md:text-5xl mb-4 text-white max-w-4xl font-bold">
           Our Service
@@ -74,6 +74,6 @@ export default function ServicesTimeline() {
           </div>
         </div>
       </div> */}
-    </div>
+    </section>
   );
 }

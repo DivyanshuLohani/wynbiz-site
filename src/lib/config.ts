@@ -9,7 +9,7 @@ export const config = {
 
   contact: {
     email: "contact@wynbiz.in",
-    phone: "+91 88888 88888",
+    phone: "+91 86036 31409",
     address: "Kathal More, Ranchi",
     socials: {
       facebook: "https://facebook.com/wynbiz",
@@ -20,7 +20,7 @@ export const config = {
   },
 
   experience: {
-    years: 5,
+    years: 3,
     summary:
       "5+ years in marketing, helping local businesses scale to franchise models. Worked with Panchakanya, Balaji Rice, and more.",
     highlights: ["Panchakanya", "Balaji Rice", "Other Local Brands"],

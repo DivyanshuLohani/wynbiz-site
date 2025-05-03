@@ -113,9 +113,12 @@ const WhyWorkWithUs = () => {
         </div>
 
         <div
-          className={`bg-[#0a0a0a] rounded-xl p-8 md:p-12 text-center max-w-4xl mx-auto shadow-xl transition-all duration-1000 delay-800 ease-out ${
-            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          }`}
+          className={`bg-[#0a0a0a] rounded-xl p-8 md:p-12 text-center max-w-4xl mx-auto 
+            transition-all duration-1000 delay-800  ease-out shadow-cyan-500 ${
+              isVisible
+                ? "opacity-100 scale-100 shadow-[0px_0px_42px_3px_rgba(46,126,255,1)] "
+                : "opacity-0 scale-95 glow-blue"
+            }`}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Let’s Take Your Business to the Next Level 🚀
@@ -129,7 +132,7 @@ const WhyWorkWithUs = () => {
             solutions to grow.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg">
+            <button className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg cursor-pointer">
               Start Free Trial
             </button>
             <button className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white/10 transition-all">
