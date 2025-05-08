@@ -22,9 +22,20 @@ export const config = {
   experience: {
     years: 3,
     summary:
-      "5+ years in marketing, helping local businesses scale to franchise models. Worked with Panchakanya, Balaji Rice, and more.",
+      "3+ years in marketing, helping local businesses scale to franchise models. Worked with Panchakanya, Balaji Rice, and more.",
     highlights: ["Panchakanya", "Balaji Rice", "Other Local Brands"],
   },
 
   gallery: Array.from({ length: 29 }, (_, i) => `/images/${i + 1}.png`),
 };
+
+export function openWhatsapp() {
+  window.open(
+    `https://wa.me/${config.contact.phone
+      .replace("+91 ", "91")
+      .replaceAll(" ", "")}?text=Hello ${
+      config.site.name
+    }, I would like to know more about your services.`,
+    "_blank"
+  );
+}

@@ -157,7 +157,10 @@ const MarqueeGallery = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen py-16 overflow-hidden">
+    <section
+      className="relative w-full min-h-screen py-16 overflow-hidden"
+      id="portfolio"
+    >
       {/* Three.js background container */}
       <div
         ref={threeContainerRef}

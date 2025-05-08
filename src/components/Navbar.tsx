@@ -1,10 +1,16 @@
 "use client";
+import { openWhatsapp } from "@/lib/config";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
 export default function WynbizNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Check if we're on the homepage
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +20,45 @@ export default function WynbizNavbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when navigating
+  const handleNavigation = () => {
+    setMobileMenuOpen(false);
+  };
+
+  // Function to generate nav links based on current page
+  const getNavLink = (sectionId: string, label: string) => {
+    if (isHomePage) {
+      // On homepage, smooth scroll to section
+      return (
+        <Link
+          href={sectionId === "about" ? "/about" : `#${sectionId}`}
+          className="text-white hover:text-gray-300 transition-colors"
+          onClick={handleNavigation}
+        >
+          {label}
+        </Link>
+      );
+    } else {
+      // On other pages, link to homepage with fragment
+      return (
+        <Link
+          href={sectionId === "about" ? "/about" : `#${sectionId}`}
+          className="text-white hover:text-gray-300 transition-colors"
+          onClick={handleNavigation}
+        >
+          {label}
+        </Link>
+      );
+    }
+  };
+
+  // Navigation links configuration
+  const navLinks = [
+    { id: "portfolio", label: "Portfolio" },
+    { id: "services", label: "Services" },
+    { id: "about", label: "About" },
+  ];
 
   return (
     <nav
@@ -40,35 +85,19 @@ export default function WynbizNavbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <a
-            href="#services"
-            className="text-white hover:text-gray-300 transition-colors"
-          >
-            Services
-          </a>
-          <a
-            href="#portfolio"
-            className="text-white hover:text-gray-300 transition-colors"
-          >
-            Portfolio
-          </a>
-          <a
-            href="#about"
-            className="text-white hover:text-gray-300 transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            className="text-white hover:text-gray-300 transition-colors"
-          >
-            Contact
-          </a>
+          {navLinks.map((link) => (
+            <React.Fragment key={link.id}>
+              {getNavLink(link.id, link.label)}
+            </React.Fragment>
+          ))}
         </div>
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <button className="px-6 py-2 bg-white hover:bg-gray-200 text-black transition-all">
+          <button
+            className="px-6 py-2 bg-white hover:bg-gray-200 text-black transition-all"
+            onClick={openWhatsapp}
+          >
             Contact Us
           </button>
         </div>
@@ -78,6 +107,7 @@ export default function WynbizNavbar() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white focus:outline-none"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? (
               <svg
@@ -119,38 +149,33 @@ export default function WynbizNavbar() {
         }`}
       >
         <div className="bg-black/95 backdrop-blur-md px-6 py-4 space-y-4">
-          <a
-            href="#home"
-            className="block text-white hover:text-gray-300 transition-colors"
+          {navLinks.map((link) => (
+            <div key={link.id} className="block">
+              {isHomePage ? (
+                <a
+                  href={`#${link.id}`}
+                  className="block text-white hover:text-gray-300 transition-colors"
+                  onClick={handleNavigation}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  href={`/#${link.id}`}
+                  className="block text-white hover:text-gray-300 transition-colors"
+                  onClick={handleNavigation}
+                >
+                  {link.label}
+                </Link>
+              )}
+            </div>
+          ))}
+
+          <button
+            className="w-full px-6 py-2 bg-white hover:bg-gray-200 text-black transition-all"
+            onClick={openWhatsapp}
           >
-            Home
-          </a>
-          <a
-            href="#services"
-            className="block text-white hover:text-gray-300 transition-colors"
-          >
-            Services
-          </a>
-          <a
-            href="#portfolio"
-            className="block text-white hover:text-gray-300 transition-colors"
-          >
-            Portfolio
-          </a>
-          <a
-            href="#about"
-            className="block text-white hover:text-gray-300 transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            className="block text-white hover:text-gray-300 transition-colors"
-          >
-            Contact
-          </a>
-          <button className="w-full px-6 py-2 bg-white hover:bg-gray-200 text-black transition-all">
-            Free Trial
+            Contact Now
           </button>
         </div>
       </div>

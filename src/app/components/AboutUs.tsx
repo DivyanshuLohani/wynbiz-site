@@ -30,6 +30,7 @@ const AboutUsSection = () => {
     <section
       ref={sectionRef}
       className="relative w-full py-24 bg-black overflow-hidden"
+      id="about"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black opacity-70" />
 

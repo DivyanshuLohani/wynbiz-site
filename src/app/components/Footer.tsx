@@ -10,6 +10,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { config } from "../../lib/config";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -62,9 +63,9 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#about" className="hover:text-cyan-400 transition">
+              <Link href="/about" className="hover:text-cyan-400 transition">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#services" className="hover:text-cyan-400 transition">

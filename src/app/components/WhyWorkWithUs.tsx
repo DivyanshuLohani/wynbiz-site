@@ -6,6 +6,7 @@ import {
   MonitorSmartphone,
   Megaphone,
 } from "lucide-react";
+import { openWhatsapp } from "@/lib/config";
 
 const WhyWorkWithUs = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -124,19 +125,16 @@ const WhyWorkWithUs = () => {
             Let’s Take Your Business to the Next Level 🚀
           </h3>
           <p className="text-gray-200 mb-8 max-w-2xl mx-auto">
-            Start with a{" "}
-            <span className="text-cyan-400 font-semibold">
-              7-day free trial
-            </span>
-            , meet us to discuss your brand, and get customized marketing
-            solutions to grow.
+            Meet us to discuss your brand and get
+            <span className="text-cyan-400 font-semibold"> customized </span>
+            marketing solutions to grow.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg cursor-pointer">
-              Start Free Trial
-            </button>
-            <button className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white/10 transition-all">
-              Schedule Meeting
+            <button
+              className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg cursor-pointer"
+              onClick={openWhatsapp}
+            >
+              Contact Us
             </button>
           </div>
         </div>
