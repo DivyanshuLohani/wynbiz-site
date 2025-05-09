@@ -7,6 +7,8 @@ import {
   useSpring,
   MotionValue,
 } from "motion/react";
+import {openWhatsapp} from "@/lib/config"
+import Link from "next/link"
 
 export const HeroParallax = ({ products }: { products: string[] }) => {
   const firstRow = products.slice(0, 5);
@@ -95,12 +97,12 @@ export const Header = () => {
         Your Growth Partner for Marketing Excellence
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="px-8 py-3 bg-white hover:bg-gray-200 text-black font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <button className="px-8 py-3 bg-white hover:bg-gray-200 text-black font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" onClick={openWhatsapp}>
           Start Free Trial
         </button>
-        <button className="px-8 py-3 bg-transparent hover:bg-white/10 text-white border-2 border-white/30 font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <Link href="/about" className="px-8 py-3 bg-transparent hover:bg-white/10 text-white border-2 border-white/30 font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
           Learn More
-        </button>
+        </Link>
       </div>
     </div>
   );
