@@ -134,7 +134,7 @@ const WhyWorkWithUs = () => {
               className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg cursor-pointer"
               onClick={openWhatsapp}
             >
-              Contact Us
+              Start your 3-day free trial now
             </button>
           </div>
         </div>
