@@ -39,3 +39,7 @@ body {
 .glow-red {
   box-shadow: 0 0 20px 10px rgba(239, 68, 68, 0.5);
 }
+
+a {
+  text-decoration: underline;
+}
