@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Zap, Briefcase, TrendingUp, BarChart } from "lucide-react";
+import { Zap, Briefcase, TrendingUp, BarChart, Bot } from "lucide-react";
 import { Timeline } from "./ui/Timeline";
 
 // Timeline component
@@ -35,6 +35,14 @@ export default function ServicesTimeline() {
       description:
         "We grow your digital community and boost engagement through tailored social media strategies. By analyzing audience behavior and trends, we create content calendars, manage posting schedules, and run targeted campaigns that not only increase your reach but also foster strong connections with your audience on platforms like Instagram, Facebook, Twitter, and LinkedIn.",
     },
+    {
+      title: "Personalized Chat Bots",
+      year: "2025",
+      icon: <Bot className="w-8 h-8 text-cyan-400" />,
+      description:
+        "We develop custom AI-powered chatbots that provide instant, personalized support to your customers 24/7. These bots can handle inquiries, guide users through processes, and even assist with sales, freeing up your team and enhancing customer satisfaction with efficient, intelligent interactions.",
+
+    },
   ];
 
   return (
@@ -53,27 +61,6 @@ export default function ServicesTimeline() {
 
       <Timeline data={timelineData} />
 
-      {/* Call to action
-      <div className="max-w-4xl mx-auto mb-20 px-4">
-        <div className="bg-zinc-900 rounded-xl p-8 md:p-12 text-center shadow-xl">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Ready to Take Your Business to the Next Level?
-          </h3>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Start with our 7-day free trial, get a personalized meeting to
-            discuss your brand, and receive customized marketing solutions
-            tailored to your business needs.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-full transition-all">
-              Start Free Trial
-            </button>
-            <button className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white/10 transition-all">
-              Schedule Meeting
-            </button>
-          </div>
-        </div>
-      </div> */}
     </section>
   );
 }

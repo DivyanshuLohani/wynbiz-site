@@ -7,7 +7,6 @@ import Markdown from 'react-markdown'
 const ChatAssistant = () => {
     const { messages, input, handleInputChange, handleSubmit, status } = useChat();
     const [isOpen, setIsOpen] = useState(false);
-    console.log(messages);
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -38,9 +37,10 @@ const ChatAssistant = () => {
 
     return (
         <>
-            <div className="fixed bottom-6 right-6 z-50">
+            <div className="fixed bottom-6 right-6 z-50" >
                 {!isOpen && (
                     <button
+                        id='chat-button'
                         onClick={() => setIsOpen(true)}
                         className="bg-black hover:bg-gray-900 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-110 group"
                     >
