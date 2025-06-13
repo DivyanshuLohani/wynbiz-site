@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Wynbiz",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo_black.png",
         width: 1200,
         height: 630,
       },
