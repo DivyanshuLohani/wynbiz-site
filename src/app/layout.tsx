@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   title: "Wynbiz",
   description: "Wynbiz - Your Gateway to Digital Marketing Excellence",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/logo_black.png",
+    shortcut: "/logo_black.png",
+    apple: "/logo_black.png",
   },
   openGraph: {
     title: "Wynbiz",
