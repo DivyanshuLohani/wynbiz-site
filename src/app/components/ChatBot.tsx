@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
 import { useChat } from '@ai-sdk/react';
 import Markdown from 'react-markdown'
 
 const ChatAssistant = () => {
     const { messages, input, handleInputChange, handleSubmit, status } = useChat();
     const [isOpen, setIsOpen] = useState(false);
+    const [isFull, setIsFull] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -52,9 +53,9 @@ const ChatAssistant = () => {
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="fixed bottom-6 right-6 z-50 w-96 h-[500px] bg-black rounded-2xl shadow-2xl border border-gray-800 flex flex-col overflow-hidden">
+                <div className={`fixed  z-50  bg-black rounded-2xl shadow-2xl border border-gray-800 flex flex-col overflow-hidden transition-all duration-300 ${isFull ? 'max-h-screen max-w-7xl w-full h-full inset-4' : 'h-[500px] w-96 bottom-6 right-6'}`}>
                     {/* Header */}
-                    <div className="bg-black text-white p-4 flex items-center justify-between border-b border-gray-800">
+                    <div className="bg-black text-white p-4 flex items-center justify-between border-b border-gray-800 relative">
                         <div className="flex items-center space-x-3">
                             <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
                                 <Bot className="w-5 h-5 text-white" />
@@ -64,12 +65,28 @@ const ChatAssistant = () => {
                                 <p className="text-xs opacity-70">Wynbiz Marketing</p>
                             </div>
                         </div>
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            className="hover:bg-white/10 p-1 rounded-full transition-colors"
-                        >
-                            <X className="w-5 h-5 text-white" />
-                        </button>
+
+                        <div className="flex items-center space-x-2">
+                            {/* Fullscreen Toggle */}
+                            <button
+                                onClick={() => setIsFull(!isFull)}
+                                className="hover:bg-white/10 p-1 rounded-full transition-colors"
+                            >
+                                {isFull ? (
+                                    <Minimize2 className="w-5 h-5 text-white" />
+                                ) : (
+                                    <Maximize2 className="w-5 h-5 text-white" />
+                                )}
+                            </button>
+
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="hover:bg-white/10 p-1 rounded-full transition-colors"
+                            >
+                                <X className="w-5 h-5 text-white" />
+                            </button>
+                        </div>
                     </div>
 
                     {/* Messages */}
